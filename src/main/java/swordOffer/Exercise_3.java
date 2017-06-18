@@ -77,7 +77,7 @@ public class Exercise_3 {
         System.out.println(Arrays.toString(result));
 
         Integer[] result1 = DGA(node1).toArray(new Integer[0]);
-        System.out.println(Arrays.toString(result));
+        System.out.println(Arrays.toString(result1));
 
         doDG(node1);
 
