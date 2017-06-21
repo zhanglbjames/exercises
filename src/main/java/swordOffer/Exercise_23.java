@@ -30,19 +30,23 @@ public class Exercise_23 {
         if (sequence[end-1] > rootValue){
             hasRight = true;
         }
-        int edge = 0;
+
+        // 确保范围内是搜索二叉树
+        int edge = -1;
         for (int i = start; i < end; ++i){
             if (sequence[i] > rootValue){
                 edge = i;
                 break;
             }
         }
-        for (int i = edge; i < end ; i++) {
-            if (sequence[i] < rootValue){
-                return false;
+        // 当 edge == -1 则表明只含有左子树 等价于hasLeft == true hasRight != true
+        if (edge != -1){ //含有右子树
+            for (int i = edge; i < end ; i++) {
+                if ( sequence[i] < rootValue){
+                    return false;
+                }
             }
         }
-
         // 有左子树
         if (hasLeft){
             // 有右子树
@@ -62,6 +66,8 @@ public class Exercise_23 {
     public static void main(String[] args){
         Exercise_23 e = new Exercise_23();
         int[] a = {4,6,7,5};
+        int[] b = {7,4,6,5};
         System.out.println(e.VerifySequenceOfBST(a));
+        System.out.println(e.VerifySequenceOfBST(b));
     }
 }
