@@ -31,7 +31,7 @@ public class Exercise_23 {
             hasRight = true;
         }
 
-        // 确保范围内是搜索二叉树
+        // ----------------确保范围内是搜索二叉树-----------
         int edge = -1;
         for (int i = start; i < end; ++i){
             if (sequence[i] > rootValue){
@@ -47,6 +47,7 @@ public class Exercise_23 {
                 }
             }
         }
+        // ----------------递归判断--------------------
         // 有左子树
         if (hasLeft){
             // 有右子树
