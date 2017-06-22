@@ -17,6 +17,7 @@ public class Exercise_23 {
         return doTravel(sequence,0,sequence.length-1);
 
     }
+    // 寻找root，左右子树，然后确保左子树都小于root，右子树都大于root
     private boolean doTravel(int[] sequence, int start, int end){
         // 递归结束条件：少于等于1个元素
         if (end - start < 1){
