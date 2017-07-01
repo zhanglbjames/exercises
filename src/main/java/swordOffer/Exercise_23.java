@@ -17,6 +17,7 @@ public class Exercise_23 {
         return doTravel(sequence,0,sequence.length-1);
 
     }
+    // 寻找root，左右子树，然后确保左子树都小于root，右子树都大于root
     private boolean doTravel(int[] sequence, int start, int end){
         // 递归结束条件：少于等于1个元素
         if (end - start < 1){
@@ -31,7 +32,7 @@ public class Exercise_23 {
             hasRight = true;
         }
 
-        // 确保范围内是搜索二叉树
+        // ----------------确保范围内是搜索二叉树-----------
         int edge = -1;
         for (int i = start; i < end; ++i){
             if (sequence[i] > rootValue){
@@ -47,6 +48,7 @@ public class Exercise_23 {
                 }
             }
         }
+        // ----------------递归判断--------------------
         // 有左子树
         if (hasLeft){
             // 有右子树
