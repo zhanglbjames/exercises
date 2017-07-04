@@ -67,9 +67,9 @@ public class TestProactorServer {
                 } finally {
                     try {
                         // 关闭本次连接通道
-                        result.close();
+                         result.close();
                         // 递归监听下一次accept事件完成
-                        //assc.accept(attachment, this);
+                        assc.accept(attachment, this);
                     } catch (Exception e) {
                         log("close connect failed! cause of " + e.getMessage());
                     }
