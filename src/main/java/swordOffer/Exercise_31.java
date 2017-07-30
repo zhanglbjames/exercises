@@ -13,22 +13,25 @@ package swordOffer;
  * 可以很快的求出任意非负整数区间中1出现的次数。
  */
 public class Exercise_31 {
+    public int numberOfBetween1AndN(int n) {
 
-    public int numberOf1BetweenAndN(int n){
-        int max = findMax(n);
-        int maxBase = max /10;
+        if (n < 1) return 0;
+        int len = getLenOfNum(n);
+        if (len == 1) return 1;
+        int tmp = (int) Math.pow(10, len - 1);
+        int first = n / tmp;
+        int firstOneNum = first == 1 ? n % tmp + 1 : tmp;
+        int otherOneNUm = first * (len - 1) * (tmp / 10);
+        return firstOneNum + otherOneNUm + numberOfBetween1AndN(n % tmp);
 
-        int countOne = 0;
-        for (int i = 0 ; i< maxBase; i *= 10){
-
-        }
-    }
-    private int findMax(int n) {
-        int base = 10;
-        while (n >= base){
-            base *= 10;
-        }
-        return base;
     }
 
+    private int getLenOfNum(int n) {
+        int len = 0;
+        while (n != 0) {
+            len++;
+            n /= 10;
+        }
+        return len;
+    }
 }
