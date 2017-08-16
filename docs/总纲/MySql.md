@@ -366,8 +366,62 @@ call sp4(@pp)//
 select @pp //
 ```
 
+
+###### 5.6-带游标的存储过程
+> http://blog.csdn.net/rdarda/article/details/7881648/
+
+
+
+```
+DELIMITER $$  
+  
+DROP PROCEDURE IF EXISTS `test`.`CursorProc` $$  
+CREATE PROCEDURE `test`.`CursorProc` ()  
+BEGIN  
+ DECLARE  no_more_products, quantity_in_stock INT DEFAULT 0;  
+ DECLARE  prd_code VARCHAR(255);  
+ /*第一步: 定义游标 Delcare a cursor,首先这里对游标进行定义*/ 
+ DECLARE  cur_product CURSOR FOR   SELECT code FROM products;   
+ /*然后定义异常处理 "not found" occur,just continue,这个是个条件处理,针对NOT FOUND的条件*/  
+ DECLARE  CONTINUE HANDLER FOR NOT FOUND  SET  no_more_products = 1; 
+ /* for  loggging information 创建个临时表格来保持*/  
+ CREATE TEMPORARY TABLE infologs (  
+ Id int(11) NOT NULL AUTO_INCREMENT,  
+ Msg varchar(255) NOT NULL,  
+ PRIMARY KEY (Id)  
+ );  
+  
+ /*第二步: 打开游标 Open the cursor */  
+ OPEN  cur_product; 
+ FETCH  cur_product INTO prd_code; /*Third: now you can Fetch the row 把第一行数据写入变量中,游标也随之指向了记录的第一行*/  
+  
+ REPEAT  
+  
+ SELECT  quantity INTO quantity_in_stock  
+ FROM  products  
+ WHERE  code = prd_code;  
+   
+ IF  quantity_in_stock < 100 THEN  
+ INSERT  INTO infologs(msg)  
+ VALUES  (prd_code);  
+ END  IF;  
+ FETCH  cur_product INTO prd_code;  
+  
+ UNTIL  no_more_products = 1  
+ END REPEAT;  
+ 
+ /*最后: cursor need be closed 用完后记得用CLOSE把资源释放掉*/  
+ CLOSE  cur_product;  
+ SELECT *  FROM infologs;  
+ DROP TABLE  infologs;  
+END $$  
+  
+DELIMITER ;  
+```
+
 ## 6-创建分区表
 > http://blog.csdn.net/jhq0113/article/details/44593511
+
 
 #### 系统一共分为5种：
 > 
