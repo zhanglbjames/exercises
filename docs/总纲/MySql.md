@@ -393,7 +393,8 @@ BEGIN
   
  /*第二步: 打开游标 Open the cursor */  
  OPEN  cur_product; 
- FETCH  cur_product INTO prd_code; /*Third: now you can Fetch the row 把第一行数据写入变量中,游标也随之指向了记录的第一行*/  
+ /*第三步: now you can Fetch the row 把第一行数据写入变量中,游标也随之指向了记录的第一行*/  
+ FETCH  cur_product INTO prd_code; 
   
  REPEAT  
   
