@@ -2,6 +2,7 @@ package huawei_8_16;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,14 +26,19 @@ public class TestT1 {
         /*
         * 1. split 方法用于使用正则表达式中的字符分割待匹配的字符串
         *
-        * 注意：如果分割符位于原字符串的起始位置，则分割的时候，会在起始位置上分割出一个
-        * " "出来
+        * 注意：
+        *    1. 如果分割符位于原字符串的起始位置，则分割的时候，会在起始位置上分割出一个""出来
+        *    2. 如果有连续两个分隔符，则会在这两个分割符之间分割有一个""出来
         * */
         System.out.println("----------- split test -----------");
         String[] results = pattern.split(str);
+
+        System.out.println("length :" + results.length);
         for (int i = 0; i < results.length; i++) {
-            System.out.print(results[i]);
+            System.out.println("element_" +i + " :" +  results[i]);
         }
+
+        System.out.println(Arrays.toString(results));
 
         /*
         * 2. split方法的limit参数的意思是使用正则表达式的分割字符将原字符串分为limit个组
