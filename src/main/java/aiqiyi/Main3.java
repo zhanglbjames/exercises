@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @version Created on 17-9-11.
  */
 public class Main3 {
-    /*
+    /**
      * 爱奇艺笔试第三题：
      * AB序列问题： ssl(A,B)为整数的有序数对
      *
@@ -17,6 +17,15 @@ public class Main3 {
      *
      *  A - [1,n]
      *  B - [1,m]
+     *
+     *  求：
+     *  (A,B)有序对的数量。
+     *
+     *
+     *  测试用例：
+     *  3 8
+     *  结果：
+     *  5
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -32,8 +41,7 @@ public class Main3 {
         ArrayList<Integer> mList = findK(m);
 
         /*
-        * 满足条件如下：
-        *
+        * 结果为整数的有序对(A,B)需满足条件如下：
         * 1. A,B都是平方幂
         * 2. A == B
         * 3. A不是平方幂，B是
